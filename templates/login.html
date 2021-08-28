@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/signin.css">
+  <title>ObticTodo</title>
+</head>
+
+<body class="text-center">
+
+  <main class="form-signin">
+    <img class="mb-4" src="/static/imgs/logo.png" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Login to ObticToDo</h1>
+    {% for msg in messages %}
+    <div class="alert alert-danger" role="alert">
+      {{msg}}
+    </div>
+    {%endfor%}
+    <form action="{% url 'login' %}" method="POST" autocomplete="off">
+      {%csrf_token%}
+      <!-- Email input -->
+      <div class="form-outline mb-2">
+        <input type="text" name="user_inp" id="form1Example1" class="form-control" autocomplete="false"
+          placeholder="Username" />
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-2">
+        <input type="password" name="pass_inp" id="form1Example2" class="form-control" placeholder="Password" />
+      </div>
+
+      <!-- 2 column grid layout for inline styling -->
+      <button type="submit" class="btn btn-primary btn-block mb-2" name="login_stage" id="lgn-btn">Sign in</button>
+      <div class="row mb-2">
+
+
+        <div class="col">
+          <!-- Simple link -->
+          <a href="#!">Forgot password?</a>
+        </div>
+      </div>
+      <!-- Submit button -->
+
+
+      <div class="text-center">
+        <p>Not a member? <a href="{% url 'register' %}">Register</a></p>
+        <p>or sign in with:</p>
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-google"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-twitter"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-github"></i>
+        </button>
+      </div>
+    </form>
+
+  </main>
+
+  <script src="/static/bootstrap//js/bootstrap.js"></script>
+  <script src="/static/fontawesome/css/all.css"></script>
+  <script src="/static/fontawesome/js/all.js"></script>
+
+</body>
+
+</html>

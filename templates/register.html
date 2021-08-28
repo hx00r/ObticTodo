@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="/static/css/signup.css">
+  <link rel="stylesheet" href="/static/fontawesome/css/all.css">
+  <title>ObticTodo</title>
+</head>
+
+<body class="text-center">
+  <main class="form-signup">
+    <form action="{% url 'register' %}" method="POST" autocomplete="off">
+      {%csrf_token%}
+      <img class="mb-4" src="/static/imgs/logo.png" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal">Register to ObticToDo</h1>
+      {% for msg in messages %}
+      <div class="alert alert-danger" role="alert">
+        {{msg}}
+      </div>
+      {%endfor%}
+      <!-- 2 column grid layout with text inputs for the first and last names -->
+      <div class="row mb-3">
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" id="form3Example1" class="form-control" name="frst_name" / placeholder="First Name">
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" id="form3Example2" class="form-control" name="last_name" / placeholder="Last Name">
+          </div>
+        </div>
+      </div>
+
+      <!-- Username input -->
+      <div class="form-outline mb-3">
+        <input type="text" id="form3Example3" class="form-control" name="user_inp" / placeholder="Username">
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-3">
+        <input type="email" id="form3Example3" class="form-control" name="email_inp" / placeholder="E-Mail Address">
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-3">
+        <input type="password" id="form3Example4" class="form-control" name="pass_inp1" / placeholder="Password">
+      </div>
+      <div class="form-outline mb-3">
+        <input type="password" id="form3Example4" class="form-control" name="pass_inp2" / placeholder="Repeat password">
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block mb-3" id="sgn-btn">Sign up</button>
+      <br>
+      <a href="{% url 'login' %}">Back to login</a>
+
+      <!-- Register buttons -->
+      <div class="text-center">
+        <p>or sign up with:</p>
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-google"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-twitter"></i>
+        </button>
+
+        <button type="button" class="btn btn-primary btn-floating mx-1">
+          <i class="fab fa-github"></i>
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <script src="/static/bootstrap//js/bootstrap.js"></script>
+  <script src="/static/fontawesome/js/all.js"></script>
+</body>
+
+</html>

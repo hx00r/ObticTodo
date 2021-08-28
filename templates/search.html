@@ -1,0 +1,93 @@
+{% extends 'base_index.html' %}
+{% block title %} Search {% endblock %}
+
+{% block content %}
+      <form action="{% url 'search' 'form' %}" method="GET" autocomplete="off">
+          <div class="d-flex mb-1 mt-3 gap-2">
+              <input type="text" class="form-control" id="recipient-name" placeholder="Search" name="q" value="{{search_query}}">
+              <button class="btn btn-primary"  name="frm-search" value="True">Search</button>
+          </div>
+      </form>
+
+        <!-- Start of the main content -->
+      <div class="list-group">
+
+        <div class="modal fade" id="viewDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="{% url 'handle_data'%}" method="POST">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label" >Data Name:</label>
+                    <input type="text" class="form-control " id="modL0NamedISp" name="data-name-view-stage">
+                  </div>
+                  <div class="mb-3">
+                    <label for="disp-list" class="col-form-label">To-Do List:</label>
+                    <textarea class="form-control" id="disp-list" name="data-list-view-stage"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="update-si0Data-btn" value="" name="update-si0Data-btn">Update</button>
+                  </div>
+                </form>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+          <ul class="list-group  mt-1">
+            {% if data_context == None %}
+            <div class="container text-center">
+              <h1 class="text-center mt-4 text-danger">Nothing matched '<strong>{{search_query}}</strong>' </h1>
+              <a href="/" class="btn btn-outline-success mt-3">Back Home</a>
+            </div>
+              
+            {%else%}
+            {%for data in data_context %}
+              <li class="list-group-item mt-1 ">
+                  <div class="d-flex">
+                    <form action="{% url 'handle_data' %}" method="POST">
+                        {%csrf_token%}
+                        {% if data.isFinished%}
+                        <button class="btn btn-primary check-left-mark nohover" type="submit" value="{{data.dataID}}" name="check_finished">
+                        <i class="fas fa-check"></i> 
+                      </button>
+                        {%else%}
+                        <button class="btn btn-primary check-left-mark uncchked-sqwd" type="submit" value="{{data.dataID}}" name="check_finished">
+                          
+                        </button>
+                        {%endif%}
+                    </form>
+                      <p class="data-nam-disp ">
+                        {% if data.isFinished %}
+                        <del>{{data.dataName}}</del> 
+                        {%else%}
+                        {{data.dataName}}
+                        {%endif%}
+                      </p>
+                      <div class="ms-auto action-btns">
+                          <form action="{% url 'del_data' %}" method="POST">
+                              {%csrf_token%}
+                              <button class="btn btn-info act-btn-vie" value="{{data.dataID}}" data-bs-toggle="modal" data-bs-target="#viewDataModal" data-bs-dataID="{{data.dataID}}" type="button">
+                                <i class="fas fa-eye"></i>
+                              </button>
+                              
+                              <button class="btn btn-danger act-btn-del" value="{{data.dataID}}" name="del-single-item" type="submit"> 
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                              
+                          </form>
+                      </div>
+                    </div>
+              </li>
+              {%endfor%}
+              {%endif %}
+              
+            </ul>
+        </div>
+          
+{% endblock %}
