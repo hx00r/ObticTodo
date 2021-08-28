@@ -2,3 +2,4 @@ sec_conf
 static_cdn
 db.sqlite3
 static/bootstrap
+static/fontawesome
