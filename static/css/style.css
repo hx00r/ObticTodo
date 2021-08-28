@@ -1,0 +1,54 @@
+body{
+    background-color: rgb(233, 233, 233);
+}
+.form-check-input{
+    color: rgb(3, 194, 3) !important;
+}
+.act-btn-vie{
+    font-size: 12px;
+    padding: 8px;
+}
+.act-btn-del{
+    font-size: 12px;
+    padding: 8px;
+}
+#exampleModalToggleLabel{
+    color: #f00 !important;
+}
+.hidden_confirm-fro-checkbox{
+    display: none !important;
+}
+.check-left-mark{
+    font-size: 12px !important;
+    margin-right: 5px !important;
+    padding: 1px !important;
+    width: 20px;
+    height: 23px;
+}
+.uncchked-sqwd{
+    background-color: transparent !important;
+}
+.uncchked-sqwd:hover{
+    background-color: whitesmoke !important;
+}
+@media screen and (max-width : 750px) {
+    .data-nam-disp{
+        overflow: hidden !important;
+        max-width: 100px;
+    }
+    
+}
+
+@media screen and (max-width : 400px) {
+    body{
+        font-size: 14px !important;
+    }
+    .act-btn-vie{
+        font-size: 12px;
+        padding: 8px;
+    }
+    .act-btn-del{
+        font-size: 12px;
+        padding: 8px;
+    }
+}
